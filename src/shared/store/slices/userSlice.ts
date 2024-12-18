@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 
@@ -44,7 +43,15 @@ const userSlice = createSlice({
       state.phone = action.payload.phone;
     },
     logout: (state) => {
-      state = null;
+      state.id = 0;
+      state.name = '';
+      state.email = '';
+      state.rol = null;
+      state.token = '';
+      state.documentNumber = '';
+      state.documentType = '';
+      state.lastName = '';
+      state.phone = '';
     },
   },
 });
