@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client"
 
-import { useEffect, useState, FormEvent } from "react"
+import { useState, FormEvent } from "react"
 import { Coupon } from "@/src/shared/types/Coupon";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/src/components/ui/card"
 import { Button } from "@/src/components/ui/button"
@@ -38,7 +39,7 @@ export default function CouponsPage() {
 
   const { data: coupons = [], refetch } = useGetCouponsQuery();
 
-  const { data: users = [], refetch: refetchUsers } = useGetUsersQuery();
+  const { data: users = [] } = useGetUsersQuery();
 
   const [ createCoupon ] = useCreateCouponMutation();
   const [ updateCoupon ] = useUpdateCouponMutation();
@@ -48,9 +49,6 @@ export default function CouponsPage() {
   users.forEach(user => {
     options.push({ label: user.documentNumber + ' - ' + user.name, value: user.id });
   });
-
-  useEffect(() => {
-  }, [coupons, options, selectedUsers])
 
   const clearForm = () => {
     setEditCoupon(null)
