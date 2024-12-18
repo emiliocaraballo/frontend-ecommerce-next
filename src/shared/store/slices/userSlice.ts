@@ -43,15 +43,7 @@ const userSlice = createSlice({
       state.phone = action.payload.phone;
     },
     logout: (state) => {
-      state.id = 0;
-      state.name = '';
-      state.email = '';
-      state.rol = null;
-      state.token = '';
-      state.documentNumber = '';
-      state.documentType = '';
-      state.lastName = '';
-      state.phone = '';
+      state = null;
     },
   },
 });

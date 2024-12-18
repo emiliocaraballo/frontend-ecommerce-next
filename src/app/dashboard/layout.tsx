@@ -7,8 +7,8 @@ import { ScrollArea } from "@/src/components/ui/scroll-area"
 import { cn } from "@/src/shared/lib/utils"
 import { Home, Package, Users, LogOut, Percent } from "lucide-react"
 import { Button } from "@/src/components/ui/button"
-import { Provider, useSelector } from "react-redux"
-import { getUser, UserState } from "@/src/shared/store/slices/userSlice"
+import { Provider, useDispatch, useSelector } from "react-redux"
+import { getUser, logout, setUser, UserState } from "@/src/shared/store/slices/userSlice"
 import { persistor, store } from "@/src/shared/store/store"
 import { PersistGate } from "redux-persist/integration/react"
 import { ToastContainer } from "@/src/components/ToastContainer"
@@ -23,18 +23,17 @@ const navItems = [
 ]
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
+  const dispatch = useDispatch();
   const pathname = usePathname();
   const router = useRouter();
   const user: UserState = useSelector(getUser);
-  console.log(user?.id, 'user');
-
-  if (!user) {
+  if (!user?.id ) {
+    dispatch(logout());
     router.push("/login");
   }
 
   const onLogOut = () => {
-    console.log('asllsls2222');
-    localStorage.removeItem("currentUser");
+    dispatch(logout());
     router.push("/login");
   }
 

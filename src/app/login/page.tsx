@@ -19,7 +19,7 @@ const LoginPage = () => {
   const router = useRouter();
 
   const user: UserState = useSelector(getUser);
-  if(user){
+  if(user?.id > 0){
     router.push("/dashboard");
   }
 
